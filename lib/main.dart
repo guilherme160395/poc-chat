@@ -1,4 +1,4 @@
-import 'package:chat_app/pages/chats_page.dart';
+import 'package:chat_app/pages/chats_list_page.dart';
 import 'package:chat_app/providers/chats_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const ChatsPage(),
+        home: const ChatsListPage(),
       ),
     );
   }

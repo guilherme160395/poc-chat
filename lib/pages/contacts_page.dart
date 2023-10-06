@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:chat_app/models/contact_model.dart';
 import 'package:chat_app/pages/add_contact_page.dart';
+import 'package:chat_app/providers/chats_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ContactsPage extends StatefulWidget {
@@ -58,30 +60,13 @@ class _ContactsPageState extends State<ContactsPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ListTile(
-          //   leading: const Icon(Icons.person_add),
-          //   title: const Text('Adicionar contato'),
-          //   onTap: () {
-          //     Navigator.of(context)
-          //         .push<ContactModel>(
-          //       MaterialPageRoute(
-          //         builder: (context) => const AddContactPage(),
-          //       ),
-          //     )
-          //         .then((newContact) {
-          //       if (newContact != null) {
-          //         setState(() {
-          //           _contacts.add(newContact);
-          //         });
-          //         _saveContactsIntoLocalStorage();
-          //       }
-          //     });
-          //   },
-          // ),
           ..._contacts.map(
             (contact) => ListTile(
               title: Text(contact.name),
-              onTap: () {},
+              onTap: () {
+                context.read<ChatsProvider>().startChat(contact: contact);
+                Navigator.of(context).pop();
+              },
             ),
           ),
         ],
